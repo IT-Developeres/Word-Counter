@@ -5,6 +5,8 @@ const sentenceCount = document.getElementById("sentenceCount")
 const calculateReadingTime = document.getElementById("calculateReadingTime")
 const spaceCount = document.getElementById("spaceCount")
 const paragraphCount = document.getElementById("paragraphCount")
+const digitCount = document.getElementById("digitCount")
+const symbolCount = document.getElementById("symbolCount")
 textInput.addEventListener("input", ()=> {
     const text = textInput.value.trim()
     charCount.textContent =  text.length;
@@ -19,6 +21,15 @@ textInput.addEventListener("input", ()=> {
     spaceCount.textContent = spaces;
     const paragraphs = text.split(/\n+/).filter(p=> p.trim() !== "");
     paragraphCount.textContent = paragraphs.length;
+
+    const digits = (text.match(/[0-9]/g) || []).length;
+    digitCount.textContent = digits;
+
+    const symbols = (text.match(/[@#$%^&*+=<>/\\|~`_\-]/g) || []).length;
+    symbolCount.textContent = symbols;
+
+    
+
     const averageWPM = 250;
 const mins = Math.floor(words.length / averageWPM);
 const secs = Math.round((words.length / averageWPM - mins) * 60);
